@@ -1,0 +1,25 @@
+Sub yearlyclose3()
+
+Dim lastrow As Long
+lastrow = Cells(Rows.Count, "A").End(xlUp).Row
+
+Dim ci As Integer
+ci = 2
+
+Dim column As Integer
+column = 1
+
+Dim yearclose As Double
+Dim yearopen As Double
+
+Range("L1") = "year close"
+
+For i = 2 To lastrow
+    If Cells(i, column) <> Cells(i + 1, column) Then
+        Cells(ci, 12) = Cells(i, 6)
+        ci = ci + 1
+
+    End If
+Next i
+
+End Sub
