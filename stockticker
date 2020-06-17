@@ -1,0 +1,23 @@
+Sub stockticker1()
+
+'last row
+Dim lastrow As Long
+lastrow = Cells(Rows.Count, "A").End(xlUp).Row
+
+'the row that i want the ticker symbols to start printing on
+Dim ci As Integer
+ci = 2
+
+Dim column As Integer
+column = 1
+
+Range("J1") = "ticker"
+
+For i = 2 To lastrow
+    If Cells(i, column).Value <> Cells(i + 1, column) Then
+        Cells(ci, 10).Value = Cells(i, column).Value
+        ci = ci + 1
+    End If
+Next i
+      
+End Sub
