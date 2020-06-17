@@ -1,0 +1,19 @@
+Sub percentchange5()
+
+Dim lastrow As Long
+lastrow = Cells(Rows.Count, "J").End(xlUp).Row
+
+Range("N1") = "percent change"
+
+For i = 2 To lastrow
+    If Cells(i, 12) <> 0 Then
+        Cells(i, 14) = FormatPercent((Cells(i, 13) / Cells(i, 12)), 1)
+    Else
+        Cells(i, 14) = 0
+        
+    End If
+    
+    
+Next i
+
+End Sub
