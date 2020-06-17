@@ -1,0 +1,158 @@
+Sub stockticker1()
+
+'last row
+Dim lastrow As Long
+lastrow = Cells(Rows.Count, "A").End(xlUp).Row
+
+'the row that i want the ticker symbols to start printing on
+Dim ci As Integer
+ci = 2
+
+Dim column As Integer
+column = 1
+
+Range("J1") = "ticker"
+
+For i = 2 To lastrow
+    If Cells(i, column).Value <> Cells(i + 1, column) Then
+        Cells(ci, 10).Value = Cells(i, column).Value
+        ci = ci + 1
+    End If
+Next i
+
+
+_______________________________________________________________________
+
+
+End Sub
+
+Sub yearlyclose3()
+
+Dim lastrow As Long
+lastrow = Cells(Rows.Count, "A").End(xlUp).Row
+
+Dim ci As Integer
+ci = 2
+
+Dim column As Integer
+column = 1
+
+Dim yearclose As Double
+Dim yearopen As Double
+
+Range("L1") = "year close"
+
+For i = 2 To lastrow
+    If Cells(i, column) <> Cells(i + 1, column) Then
+        Cells(ci, 12) = Cells(i, 6)
+        ci = ci + 1
+
+    End If
+Next i
+
+End Sub
+
+
+_______________________________________________________________________
+
+
+Sub yearlyopen2()
+
+Dim lastrow As Long
+lastrow = Cells(Rows.Count, "A").End(xlUp).Row
+
+Dim ci As Integer
+ci = 2
+
+
+
+
+Range("K1") = "year open"
+
+For i = 2 To lastrow
+    If Cells(i, 1) = Cells(ci, 10) Then
+        Cells(ci, 11) = Cells(i, 3)
+        ci = ci + 1
+    End If
+Next i
+
+_______________________________________________________________________
+
+
+End Sub
+
+Sub yearlychange4()
+
+Dim lastrow As Long
+lastrow = Cells(Rows.Count, "J").End(xlUp).Row
+
+Range("M1") = "yearly change"
+
+For i = 2 To lastrow
+    Cells(i, 13) = (Cells(i, 12) - Cells(i, 11))
+    If Cells(i, 13) < 0 Then
+        Cells(i, 13).Interior.ColorIndex = 3
+    Else
+        Cells(i, 13).Interior.ColorIndex = 4
+        End If
+          
+Next i
+
+End Sub
+
+_______________________________________________________________________
+
+
+Sub percentchange5()
+
+Dim lastrow As Long
+lastrow = Cells(Rows.Count, "J").End(xlUp).Row
+
+Range("N1") = "percent change"
+
+For i = 2 To lastrow
+    If Cells(i, 12) <> 0 Then
+        Cells(i, 14) = FormatPercent((Cells(i, 13) / Cells(i, 12)), 1)
+    Else
+        Cells(i, 14) = 0
+        
+    End If
+    
+    
+Next i
+
+End Sub
+
+
+
+
+_______________________________________________________________________
+
+
+
+Sub totalvolume6()
+
+
+Dim lastrow As Long
+lastrow = Cells(Rows.Count, "A").End(xlUp).Row
+
+
+Dim total As Double
+Dim ci As Long
+
+ci = 2
+total = 0
+
+Range("O1") = "total volume"
+
+For i = 2 To lastrow
+    total = total + Cells(i, 7)
+    If Cells(i, 1) <> Cells(i + 1, 1) Then
+        Cells(ci, 15) = total
+        total = 0
+        ci = ci + 1
+    End If
+Next i
+
+
+End Sub
