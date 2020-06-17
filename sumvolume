@@ -1,0 +1,26 @@
+Sub totalvolume6()
+
+
+Dim lastrow As Long
+lastrow = Cells(Rows.Count, "A").End(xlUp).Row
+
+
+Dim total As Double
+Dim ci As Long
+
+ci = 2
+total = 0
+
+Range("O1") = "total volume"
+
+For i = 2 To lastrow
+    total = total + Cells(i, 7)
+    If Cells(i, 1) <> Cells(i + 1, 1) Then
+        Cells(ci, 15) = total
+        total = 0
+        ci = ci + 1
+    End If
+Next i
+
+
+End Sub
