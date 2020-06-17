@@ -1,0 +1,21 @@
+Sub yearlyopen2()
+
+Dim lastrow As Long
+lastrow = Cells(Rows.Count, "A").End(xlUp).Row
+
+Dim ci As Integer
+ci = 2
+
+
+
+
+Range("K1") = "year open"
+
+For i = 2 To lastrow
+    If Cells(i, 1) = Cells(ci, 10) Then
+        Cells(ci, 11) = Cells(i, 3)
+        ci = ci + 1
+    End If
+Next i
+
+End Sub
